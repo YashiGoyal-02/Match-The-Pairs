@@ -111,34 +111,65 @@ function generateRandColors(num) {
 	//make an array
 	var arr = [];
 	//repeat num times
-	for (var i = 0; i < num; i++) {
+	// for (var i = 0; i < num; i++) {
 		//get random numbers and push it in array
 		// arr.push(randomColor());
-		var randomNumber = Math.floor(Math.random()*colorPool.length);
-		arr.push(colorPool[randomNumber]);
-	}
-	var uniques = chance.unique(chance.natural, 8, { min: 0, max: 7 });
-	for (i = 0; i < 8; i++) {
-		arr.push(arr[uniques[i]]);
-	}
-	//return that array
-	var as = [];
-	var uniques = chance.unique(chance.natural, 16, { min: 0, max: 15 });
-	for (var i = 0; i < 16; i++) {
-		as.push(arr[uniques[i]]);
+		// var randomNumber = Math.floor(Math.random()*colorPool.length);
+		// console.log(randomNumber);
+		// arr.push(colorPool[randomNumber]);
+	// }
+	// console.log(arr);
 
+	var uniques = chance.unique(chance.natural, 8, { min: 0, max: 7 });
+	for (var i=0; i<num; i++) {
+		arr.push(colorPool[uniques[i]]);
+		arr.push(colorPool[uniques[i]]);
 	}
-	return as;
+	// console.log(uniques);
+	// for (i = 0; i < 8; i++) {
+	// 	arr.push(arr[uniques[i]]);
+	// }
+	// console.log(arr);
+	//return that array
+	// var as = [];
+	// var uniques = chance.unique(chance.natural, 16, { min: 0, max: 15 });
+	// console.log(uniques);
+	// for (var i = 0; i < 16; i++) {
+	// 	as.push(arr[uniques[i]]);
+
+	// }
+	// console.log(as);
+	var shuffled = shuffleArray(arr);
+
+	console.log(shuffled);
+	return shuffled;
 }
+
+//function to shuffle array
+function shuffleArray(array) {
+	let curId = array.length;
+	// There remain elements to shuffle
+	while (0 !== curId) {
+	  // Pick a remaining element
+	  let randId = Math.floor(Math.random() * curId);
+	  curId -= 1;
+	  // Swap it with the current element.
+	  let tmp = array[curId];
+	  array[curId] = array[randId];
+	  array[randId] = tmp;
+	}
+	return array;
+  }
 
 //function to generate random color
-function randomColor() {
-	//pick r, g, b from 0 - 255
-	var r = Math.floor(Math.random() * 256);
-	var g = Math.floor(Math.random() * 256);
-	var b = Math.floor(Math.random() * 256);
-	return "rgb(" + r + ", " + g + ", " + b + ")";
-}
+// function randomColor() {
+// 	//pick r, g, b from 0 - 255
+// 	var r = Math.floor(Math.random() * 256);
+// 	var g = Math.floor(Math.random() * 256);
+// 	var b = Math.floor(Math.random() * 256);
+// 	return "rgb(" + r + ", " + g + ", " + b + ")";
+// }
+
 // init function
 function init() {
 	score = 0;
